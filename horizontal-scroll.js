@@ -79,7 +79,6 @@ document.addEventListener('wheel', function (e) {
 
 
 const detectMouseWheelDirection = (e) => {
-    console.log(e);
     let delta = null;
     let direction = '';
 
@@ -89,13 +88,12 @@ const detectMouseWheelDirection = (e) => {
     if (e.wheelDelta) { // will work in most cases
         delta = e.wheelDelta / 60;
     } 
-    // else if (e.detail) { // fallback for Firefox
-    //     delta = -e.detail / 2;
-    // }
+    else if (e.deltaY) { // fallback for Firefox
+        delta = -e.deltaY;
+    }
     if (delta !== null) {
         direction = delta > 0 ? 'left' : 'right';
     }
-console.log(delta);
     return direction;
 }
 
